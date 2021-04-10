@@ -27,14 +27,14 @@ updatebarplot= (data,id)=> {
         marker: {color: "#EE6868"}
     };
     
-    var data = [trace];
+    var data1 = [trace];
     
     var layout = {
         height: 600,
         width: 500
     };
       
-    Plotly.newPlot("bar", data, layout);
+    Plotly.newPlot("bar", data1, layout);
 
 };
 
@@ -57,18 +57,58 @@ updatebubbleplot= (data,id)=> {
         }
      };
   
-  var data = [trace1];
+  var data1 = [trace1];
   
   var layout = {
-    title: 'OUT ID',
+    //title: 'OUT ID',
     showlegend: false,
     height: 600,
-    width: 1000
+    width: 1200
   };
   
-  Plotly.newPlot('bubble', data, layout);
+  Plotly.newPlot('bubble', data1, layout);
 
 };
+
+updategaugechart = (wfreq) =>{
+    var data1  = [
+        {
+          //domain: { x: [0, 1], y: [0, 1] },
+          value: wfreq,
+          title: { text: "Belly Button Washing Frequency <br> Scrubs per Week"},
+          type: "indicator",
+          mode: "gauge+number",
+          gauge: {
+            bordercolor:"gray",
+            borderwidth:"2",
+            axis: {range: [1, 9], nticks: 9
+                 },
+            bar: { color: "#4D90E1" },
+            steps: [
+              { range: [1, 2], color: "#F2F3F4" },
+              { range: [2, 3], color: "#D7DBDD" },
+              { range: [3, 4], color: "#F5CBA7" },
+              { range: [4, 5], color: "#F0B27A" },
+              { range: [5, 6], color: "#DC7633" },
+              { range: [6, 7], color: "#CD6155" },
+              { range: [7, 8], color: "#C0392B" },
+              { range: [8, 9], color: "#922B21" }
+            ],
+            threshold: {
+              line: { color: "#0F56AB", width: 4 },
+              thickness: 0.75,
+              value: wfreq
+            }
+          }
+        }
+      ];
+      
+      var layout = {margin: { t: 0, b: 0 } };
+
+      Plotly.newPlot('gauge', data1, layout);
+
+};
+
 
 //function the update the plots when the dropdown selection change
 optionChanged = (id) =>{
@@ -85,6 +125,7 @@ optionChanged = (id) =>{
         console.log (demoginfo);
         updatebarplot(data, id);
         updatebubbleplot(data,id);
+        updategaugechart(demoginfo[0].wfreq);
 
     });
 }
