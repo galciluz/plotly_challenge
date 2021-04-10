@@ -34,7 +34,7 @@ updatebarplot= (data,id)=> {
         width: 500
     };
       
-    Plotly.newPlot("bar", data1, layout);
+    Plotly.newPlot("bar", data1);
 
 };
 
@@ -66,7 +66,7 @@ updatebubbleplot= (data,id)=> {
     width: 1200
   };
   
-  Plotly.newPlot('bubble', data1, layout);
+  Plotly.newPlot("bubble", data1, layout);
 
 };
 
@@ -105,7 +105,7 @@ updategaugechart = (wfreq) =>{
       
       var layout = {margin: { t: 0, b: 0 } };
 
-      Plotly.newPlot('gauge', data1, layout);
+      Plotly.newPlot("gauge", data1, layout);
 
 };
 
@@ -140,6 +140,3 @@ d3.json("samples.json").then(data => {
     });
     optionChanged(data.names[0]);
 });
-
-// show the data of the first element
-//optionChanged("940");
